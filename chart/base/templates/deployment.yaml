@@ -61,7 +61,7 @@ spec:
               value: ""
             - name: LOG_LEVEL
               value: {{ .Values.logLevel | quote }}
-            - name: SERVICE_URL
+            - name: PILLBOX_URL
               value: {{ printf "http://%s" .Values.connectsTo | quote }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
