@@ -1,5 +1,6 @@
 package com.patientcare.admin.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,9 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class AdminController {
 	
+	@Autowired
+	public RestTemplate restTemplate;
+	
 	@Value("${PILLBOX_API}")
 	private String PILLBOX_API;
 	
@@ -20,7 +24,6 @@ public class AdminController {
 	public ResponseEntity<String> getAllPillboxes() {
 		String url = PILLBOX_API + GET_PILLBOX_PATH;
 		
-		RestTemplate restTemplate = new RestTemplate();
 		String resp = restTemplate.getForObject(url, String.class);
 		return new ResponseEntity<String>(resp, HttpStatus.OK);
 				
